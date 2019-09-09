@@ -24,14 +24,14 @@
 #include <wiringPi.h>
 class photogate{
 public:
-	photogate(int pin);
+	photogate(int pin = 2);
 	
 	/*********************************************************************
 	*	filamentCheck: This method connects the Raspberry Pi to the
 	*		photogate and pauses the print if it detects no filament.
 	*********************************************************************/
-	void filamentCheck();
+	bool filamentCheck();
 
 private:
 	int pin;
-}
+};

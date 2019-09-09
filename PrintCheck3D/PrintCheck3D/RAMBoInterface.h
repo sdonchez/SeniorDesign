@@ -29,7 +29,7 @@
 class RAMBoInterface
 {
 
-	/*
+/*
 * GCODE Commands Implemented:
 * M0:	Unconditional stop. Wait for user to press a button on the LCD (Only if
 *		ULTRA_LCD is enabled)
