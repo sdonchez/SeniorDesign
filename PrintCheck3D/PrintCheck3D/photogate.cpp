@@ -23,13 +23,17 @@
 #include "photogate.h"
 #include "RAMBoInterface.h"
 
+photogate::photogate(int pin) {
+	wiringPiSetup();
+	this->pin = pin;
+	pinMode(pin, INPUT);
+}
+
 /*********************************************************************
 	*	filamentCheck: This method connects the Raspberry Pi to the
 	*		photogate and pauses the print if it detects no filament.
 	*********************************************************************/
-photogate::filamentCheck(int pin){
-	wiringPiSetup();
-	pinMode(pin, INPUT);	
+void photogate::filamentCheck(int pin){	
 	status = digitalRead(pin);
 	if (status == 1)
 		pausePrint();

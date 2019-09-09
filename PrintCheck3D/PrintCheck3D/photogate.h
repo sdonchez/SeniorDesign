@@ -24,9 +24,14 @@
 #include <wiringPi.h>
 class photogate{
 public:
+	photogate();
+	
 	/*********************************************************************
 	*	filamentCheck: This method connects the Raspberry Pi to the
 	*		photogate and pauses the print if it detects no filament.
 	*********************************************************************/
-	void filamentCheck(int pin);
+	void filamentCheck();
+
+private:
+	int pin;
 }
