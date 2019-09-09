@@ -33,8 +33,10 @@ photogate::photogate(int pin) {
 	*	filamentCheck: This method connects the Raspberry Pi to the
 	*		photogate and pauses the print if it detects no filament.
 	*********************************************************************/
-void photogate::filamentCheck(int pin){	
+void photogate::filamentCheck(){	
+	boolean out = false;
 	status = digitalRead(pin);
 	if (status == 1)
-		pausePrint();
+		out = true;
+	return out;
 }
