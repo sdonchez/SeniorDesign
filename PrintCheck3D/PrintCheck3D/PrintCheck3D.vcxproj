@@ -82,10 +82,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="photogate.cpp" />
+    <ClCompile Include="print.cpp" />
     <ClCompile Include="RAMBoInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="photogate.h" />
+    <ClInclude Include="print.h" />
     <ClInclude Include="RAMBoInterface.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
