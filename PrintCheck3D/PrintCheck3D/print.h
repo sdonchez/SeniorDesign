@@ -24,7 +24,8 @@
 using namespace std;
 #include <stdio.h>
 #include <string>
-
+#include <raspicam/raspicam_cv.h>
+#include <photogate.h>
 class print
 {
 public:
@@ -58,7 +59,6 @@ public:
 *	of the photogate and stores it for future use.
 */
 	void statusCheck();
-
 /* 
 * evaluatePrint: compares the two images to ensure the print is within bounds,
 *	and throws an exception if there is a failure detected. Also performs a
@@ -74,7 +74,8 @@ public:
 	void resultHandler();
 
 private:
-	FILE * currImage;
+	cv::Mat image; //create image object
+    raspicam::RaspiCam_Cv Camera; //create camera object
 	bool filamentCheck;
 	string gcode;
 	bool isPrinting;
