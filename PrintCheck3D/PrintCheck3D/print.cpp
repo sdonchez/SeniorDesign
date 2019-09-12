@@ -32,3 +32,18 @@ print::print()
 print::~print()
 {
 }
+
+print::statusCheck(){
+//------------------Take a picture---------------------
+        Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 ); //set camera params
+        if (!Camera.open()) {cerr<<"Error opening the camera"<<endl;return -1;}
+        //^camera connection error^
+
+        Camera.grab(); //begin recieving data
+        Camera.retrieve(image); //grab image
+        Camera.release(); //stop recieving data
+        cv::imwrite("raspicam_cv_image.jpg",image); //save image to file
+
+        //----------------Check photogate---------------------
+        return filamentCheck();
+}
