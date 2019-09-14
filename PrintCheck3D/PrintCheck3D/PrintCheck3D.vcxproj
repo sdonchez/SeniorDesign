@@ -89,6 +89,8 @@
     <ClInclude Include="photogate.h" />
     <ClInclude Include="print.h" />
     <ClInclude Include="RAMBoInterface.h" />
+    <ClInclude Include="ModelGeneration.cpp" />
+    <ClInclude Include="ModelGeneration.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
