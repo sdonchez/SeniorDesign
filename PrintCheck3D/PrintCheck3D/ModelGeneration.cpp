@@ -30,17 +30,7 @@
 *******************************************************************************/
 
 #include "ModelGeneration.h"
-
-/*
-* getGcode: recieves Gcode from source and converts it into something the code 
-* can interpret
-*
-*/
-void ModelGeneration::getGcode()
-{
-
-}
-
+int fd = 0; //file descriptor
 /*
 * readGcode: reads Gcode and stores the values from a specific axis into an array
 * which then stores the min/max of each layer into arrays (or a single 2D array)
@@ -48,7 +38,17 @@ void ModelGeneration::getGcode()
 */
 void ModelGeneration::readGcode()
 {
+    int aval = serialDataAvail(fd);
+    serialGetchar(fd);
+    if (aval !< 0){
+        for(int i = 0;i < 3 + 1; i++){
+         fd[i]
 
+        }
+    }
+    else{
+        std::cout << "error number: " << errno;
+    }
 }
 
 /*
@@ -58,6 +58,26 @@ void ModelGeneration::readGcode()
 */
 void ModelGeneration::plotGcode()
 {
+    
+    
+    xData.create(1, 100, CV_64F);//1 row, 100 columns, Double
+    yData.create(1, 100, CV_64F);
+
+    for(int i = 0; i<100; ++i)
+    {
+        xData.at<double>(i) = arrX[i];
+        yData.at<double>(i) = arrY[i];
+    }
+    plot = plot::createPlot2d(xData, yData);
+    plot->setPlotSize(100, 1000);
+    plot->setMaxX(10);
+    plot->setMinX(0);
+    plot->setMaxY(100);
+    plot->setMinY(-1);
+    plot->render(display);
+    imshow("Plot", display);
+
+)       
 
 }
 

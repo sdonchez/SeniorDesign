@@ -1,10 +1,18 @@
 #pragma once
 
 /*
-*	RAMBoInterface.h:
-*		Facilitates the creation and use of an interface between the Raspberry
-*		Pi hosting the PrintCheck3D application and the RAMBo that controls the
-*		printer.
+*	ModelGeneration.c:
+*       Responsible for generating the vertical outline of a model from G-code
+*
+*       Process:
+*       Takes in G-code, read line-by-line, recognize if receiving arc code 
+*       (if so find max of that arc using the center point and radius), store 
+*       all values of an axis into array, stop feeding array when the command 
+*       for a new layer is read (and store the layer height value). Find max 
+*       and min of values in that array, store and graphically represent those 
+*       points. Then clear the array and begin again, moving the height for the 
+*       next points by the layer height. Once all points are processed, connect 
+*       the dots to create the outline. 
 ********************************************************************************
 *	This file is part of PrintCheck3D
 *	Copyright(C) 2019 Stephen Donchez, Jared Rymsza, Robert Pink
@@ -23,71 +31,37 @@
 *	along with this program.If not, see < https://www.gnu.org/licenses/>.
 *******************************************************************************/
 
-#include <wiringSerial.h>
 #include <iostream>
 #include <fstream>
-class RAMBoInterface
+#include <wiringSerial.h>
+
+class ModelGeneration
 {
 
-/*
-* GCODE Commands Implemented:
-* M0:	Unconditional stop. Wait for user to press a button on the LCD (Only if
-*		ULTRA_LCD is enabled)
-* M24:	Start/resume SD print
-* M25:	Pause SD print
-*/
-
 public:
-/*
-* RAMBoInterface: sets up the serial connection between the Raspberry Pi running
-*	this application and the RAMBo controlling the printer. First collects
-*	desired parameters (or uses defaults if none provided), then attempts to
-*	open the serial connection using these parameters. In the event of failure,
-*	returns the error condition.
-*/
-	RAMBoInterface(char* port, int baud);
+
+int arrX[100], arrY[100];
+Mat xData, yData, display;
+Ptr<plot::Plot2d> plot; //create plot object
 
 /*
-* ~RAMBoInterface: tears down the serial connection between the Raspberry Pi
-*	running this application and the RAMBo controlling the printer. First
-*	flushes any remaining data in the serial file descriptor, then closes the
-*	port.
+* readGcode: reads Gcode and stores the values from a specific axis into an array
+* which then stores the min/max of each layer into arrays (or a single 2D array)
+* that are returned
 */
-	~RAMBoInterface();
+void readGcode();
 
 /*
-* stopPrint: Sends a "M0" GCODE command to the RAMBo, instructing the printer to
-*	immediately execute an unconditional stop. Used in the event of print
-*	print failure not caused by end of filament
+* plotGcode: takes two arrays (or a single 2D array) and outputs (or stores) an 
+* image of those pointswhich then stores the min/max of each layer into arrays 
+* that are returned
 */
-	void stopPrint();
+void plotGcode();
 
-/*
-* pausePrint: Sends a "M25" GCODE command to the RAMBo, instructing the printer
-*	to pause the printing operation, with the intention of allowing the user to 
-*	replace the empty filament supply and resume print operation without loss of
-*	progress
-*/
-	void pausePrint();
 
-/*
-* resumePrint: Sends a "M24" GCODE command to the RAMBo, instructing the printer
-*	to resume the printing operation, presumably after the empty filament supply
-*	has been replaced.
-*/
-	void resumePrint();
-
-/* fetchGCode: initates a serial transfer of the GCode data for the currently
-*	selected file from the RAMBo's SD Card to the Raspberry Pi, for use by the
-*	modeling routines in the PrintCheck3D application
-*/
-	//TODO: Define GCode Retrevial Mechanism
 
 private:
-	char* port;
-	int portFD;
-	int baud;
-	
-	
+    
+    
 };
 
