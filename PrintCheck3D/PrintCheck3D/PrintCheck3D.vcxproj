@@ -92,6 +92,9 @@
     <ClInclude Include="ModelGeneration.cpp" />
     <ClInclude Include="ModelGeneration.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt" />
+  </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\sgdon\Source\Repos\sdonchez\SeniorDesign\PrintCheck3D\PrintCheck3D\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
