@@ -1,0 +1,11 @@
+//user-defined headers
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/core/misc/python/pyopencv_async.hpp"
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/core/misc/python/pyopencv_cuda.hpp"
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/core/misc/python/pyopencv_umat.hpp"
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/flann/misc/python/pyopencv_flann.hpp"
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/ml/misc/python/pyopencv_ml.hpp"
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/dnn/misc/python/pyopencv_dnn.hpp"
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/features2d/misc/python/pyopencv_features2d.hpp"
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/videoio/misc/python/pyopencv_videoio.hpp"
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/objdetect/misc/python/pyopencv_objdetect.hpp"
+#include "C:/Users/sgdon/Source/Repos/sdonchez/SeniorDesign/PrintCheck3D/vendor/openCV/modules/stitching/misc/python/pyopencv_stitching.hpp"
