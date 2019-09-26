@@ -40,6 +40,7 @@ class ModelGeneration
 
 public:
 
+string valY,valZ;
 int arrX[1000], arrY[1000];
 Mat xData, yData, display;
 Ptr<plot::Plot2d> plot; //create plot object
@@ -61,7 +62,7 @@ void plotGcode(int arrX[],int arrY[]);
 
 
 private:
-    int lp = 0;
-    
+    int lp;
+    size_t stt, end, rpdmov, Mov, Y_, Z_, relPos, space;
 };
 
