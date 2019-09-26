@@ -63,8 +63,8 @@ public:
 	void statusCheck();
 /* 
 * evaluatePrint: compares the two images to ensure the print is within bounds,
-*	and throws an exception if there is a failure detected. Also performs a
-*	similar process with the photogate results.
+*	and sets the apropriate variable if there is a failure detected. Also 
+*	calculates percent completion
 */
 	void evaluatePrint();
 
