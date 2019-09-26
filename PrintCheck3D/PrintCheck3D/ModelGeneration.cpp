@@ -38,23 +38,18 @@ int fd = 0; //file descriptor
 */
 void ModelGeneration::readGcode(string gcode) //read the Y/Z axis
 {
-  std::string startPrint (";LAYER_COUNT:");
-  std::string endPrint (";TIME_ELAPSED:");
-  std::string rpdMov ("G0");
-  std::string Mov ("G1");
-  std::string yData ("Y");
-  std::string zData ("Z");
-  std::string space (" ");
-  std::string relativePos ("G91"); //NOT GOOD TO HAVE!!
+  string startPrint = ";LAYER_COUNT:";
+  string endPrint ";TIME_ELAPSED:";
+  string rpdMov "G0";
+  string Mov "G1";
+  string yData "Y";
+  string zData "Z";
+  string space " ";
+  string relativePos "G91"; //NOT GOOD TO HAVE!!
 
-  
-  found=str.find('.');
-  if (found!=std::string::npos)
-    std::cout << "Period found at: " << found << '\n';
-
-  // let's replace the first needle:
-  str.replace(str.find(str2),str2.length(),"preposition");
-  std::cout << str << '\n';
+  std::size_t found = str.find(gcode); 
+    if (found != string::npos) 
+        cout << "First occurrence is " << found << endl;
     
 }
 
@@ -65,8 +60,6 @@ void ModelGeneration::readGcode(string gcode) //read the Y/Z axis
 */
 void ModelGeneration::plotGcode()
 {
-    
-    
     xData.create(1, 100, CV_64F);//1 row, 100 columns, Double
     yData.create(1, 100, CV_64F);
 
@@ -82,9 +75,7 @@ void ModelGeneration::plotGcode()
     plot->setMaxY(100);
     plot->setMinY(-1);
     plot->render(display);
-    imwrite("outline.jpg", display); //write image to outline file
-
-)       
+    imwrite("outline.jpg", display); //write image to outline file   
 
 }
 
