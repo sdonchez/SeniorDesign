@@ -33,14 +33,14 @@
 
 #include <iostream>
 #include <fstream>
-#include <wiringSerial.h>
+#include <string>   
 
 class ModelGeneration
 {
 
 public:
 
-int arrX[100], arrY[100];
+int arrX[1000], arrY[1000];
 Mat xData, yData, display;
 Ptr<plot::Plot2d> plot; //create plot object
 
@@ -49,19 +49,19 @@ Ptr<plot::Plot2d> plot; //create plot object
 * which then stores the min/max of each layer into arrays (or a single 2D array)
 * that are returned
 */
-void readGcode();
+void readGcode(string gcode);
 
 /*
 * plotGcode: takes two arrays (or a single 2D array) and outputs (or stores) an 
 * image of those pointswhich then stores the min/max of each layer into arrays 
 * that are returned
 */
-void plotGcode();
+void plotGcode(int arrX[],int arrY[]);
 
 
 
 private:
-    
+    int lp = 0;
     
 };
 

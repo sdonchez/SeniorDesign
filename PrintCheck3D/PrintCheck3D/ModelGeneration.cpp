@@ -38,27 +38,44 @@ int fd = 0; //file descriptor
 */
 void ModelGeneration::readGcode(string gcode) //read the Y/Z axis
 {
-  string startPrint = ";LAYER_COUNT:";
-  string endPrint ";TIME_ELAPSED:";
-  string rpdMov "G0";
-  string Mov "G1";
-  string yData "Y";
-  string zData "Z";
-  string space " ";
-  string relativePos "G91"; //NOT GOOD TO HAVE!!
+  size_t stt = gcode.find(";LAYER_COUNT:"); 
+  size_t end = gcode.find(";TIME_ELAPSED:");
+  size_t yData = gcode.find("Y");
+  size_t zData = gcode.find("Z");
+  size_t rpdMov = gcode.find("G0");
+  size_t Mov = gcode.find("G1");
+  size_t space = gcode.find(" ");
+  size_t relPos = gcode.find("G91"); //NOT GOOD TO HAVE!!
 
-  std::size_t found = str.find(gcode); 
-    if (found != string::npos) 
-        cout << "First occurrence is " << found << endl;
+
+  if(stt != string::npos){ //detect when data collection must start
+        lp = 1;
+  }
+  
+  if(lp == 1){
     
-}
+    if(end != string::npos){ //detect when data collection must end
+        lp = 0;
+        break;
+    }
+    if(Mov != string::npos){
+        while(a == 0){
+            arrX[i](int)string.at(npos+j)
+            j++;
+        }
+    }
+
+
+  }
+ 
+
 
 /*
 * plotGcode: takes two arrays (or a single 2D array) and outputs (or stores) an 
 * image of those pointswhich then stores the min/max of each layer into arrays 
 * that are returned
 */
-void ModelGeneration::plotGcode()
+void ModelGeneration::plotGcode(int arrX[],int arrY[])
 {
     xData.create(1, 100, CV_64F);//1 row, 100 columns, Double
     yData.create(1, 100, CV_64F);
