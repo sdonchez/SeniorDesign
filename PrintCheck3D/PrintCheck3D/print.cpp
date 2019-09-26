@@ -23,17 +23,65 @@
 #include "print.h"
 
 
-
-print::print()
+/*******************************************************************************
+* print: sets up the various functionalities required to manage a print. Defines
+*	a file to store the current image from the camera, as well as the current
+*	model state. Also starts GCode transfer, and tells the webserver that
+*	printing has commenced
+*	@param RAMBoInteface *printerInterface: a pointer to the RAMBoInterface
+*		object created by the main routine during startup
+*	@returns: none
+*	@note:
+*	@see:
+*******************************************************************************/
+print::print(RAMBoInterface *printerInterface)
 {
+	this->printerInterface = *printerInterface;
+	image = new cv::Mat;
+	currModel = new model();
+	printerInterface.startGcode();
+	currConnection.printStarted();
 }
 
 
 print::~print()
 {
+	currConnection.printCompleted();
 }
 
-print::statusCheck(){
+/*******************************************************************************
+*  monitorPrint: loops through a process of checking the status of the printer,
+*	comparing it to the expected appearence of the print, and taking action (or 
+*	no action) depending on the results, before waiting and repeating this 
+*	process.
+*	@param none
+*	@returns: none
+*	@note:
+*	@see:
+*******************************************************************************/
+void print::monitorPrint() {
+	while (isPrinting) {
+		printerInterface.fetchGcode();
+		statusCheck();
+		evaluatePrint();
+		try {
+			resultHandler();
+		}
+		catch (printFailureException e){
+			printerInterface.stopPrint();
+			percentComplete = 0;
+			statusDescr = e.what;
+		}
+		catch (filamentOutException e) {
+			printerInterface.pausePrint();
+			statusDescr = e.what;
+		}
+		currConnection.upload(image, percentComplete, statusDescr);
+		usleep(30000000);
+	}
+}
+
+void print::statusCheck(){
 //------------------Take a picture---------------------
         Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 ); //set camera params
         if (!Camera.open()) {cerr<<"Error opening the camera"<<endl;return -1;}
@@ -46,4 +94,23 @@ print::statusCheck(){
 
         //----------------Check photogate---------------------
         return filamentCheck();
+}
+
+/*******************************************************************************
+* evaluatePrint: compares the two images to ensure the print is within bounds,
+*	and throws an exception if there is a failure detected. Also performs a
+*	similar process with the photogate results.
+*	@param none
+*	@returns: none
+*	@note:
+*	@see:
+*******************************************************************************/
+void print::evaluatePrint() {
+	int result = 0;
+	imageComp currComp = new imageComp(image, currModel);
+	
+	if (currComp.match && filamentCheck)
+		percentComplete = (currLine / totalLines) * 100;
+	else
+		percentComplete = 0;
 }
