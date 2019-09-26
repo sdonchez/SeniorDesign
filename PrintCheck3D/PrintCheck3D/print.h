@@ -38,7 +38,7 @@ public:
 *	model state. Also starts GCode transfer, and tells the webserver that
 *	printing has commenced
 */
-	print(RAMBoInterface *printerInterface);
+	print(RAMBoInterface *);
 
 /*
 * ~print: tears down the file pointers and buffers created by the constructor.
@@ -86,7 +86,7 @@ private:
 	webConnect currConnection;
 	int totalLines;
 	int currLine;
-	RAMBoInterface *printerInterface;
+	RAMBoInterface printerInterface;
 	string statusDescr;
 /*
 * printFailureException: thrown in event of breakaway from the print bed, 

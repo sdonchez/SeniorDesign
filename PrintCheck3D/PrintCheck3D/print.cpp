@@ -34,9 +34,9 @@
 *	@note:
 *	@see:
 *******************************************************************************/
-print::print(RAMBoInterface *printerInterface)
+print::print(RAMBoInterface *printerIface)
 {
-	this->printerInterface = *printerInterface;
+	this->printerInterface = *printerIface;
 	image = new cv::Mat;
 	currModel = new model();
 	printerInterface.startGcode();
@@ -124,8 +124,10 @@ void print::evaluatePrint() {
 	int result = 0;
 	imageComp currComp = new imageComp(image, currModel);
 	
-	if (currComp.match && filamentCheck)
+	if (currComp.match && filamentCheck) {
 		percentComplete = (currLine / totalLines) * 100;
+		modelCheck = true;
+	}
 	else
 		percentComplete = 0;
 }
