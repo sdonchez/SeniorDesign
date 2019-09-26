@@ -96,6 +96,13 @@ void print::statusCheck(){
         return filamentCheck();
 }
 
+
+print::resultHandler() {
+	if(!modelCheck)
+		throw new printFailureException;
+	if (!filamentCheck)
+		throw new filamentOutException;
+
 /*******************************************************************************
 * evaluatePrint: compares the two images to ensure the print is within bounds,
 *	and sets the apropriate variable if there is a failure detected. Also 
