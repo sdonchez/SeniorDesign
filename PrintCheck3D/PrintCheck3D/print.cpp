@@ -47,3 +47,10 @@ print::statusCheck(){
         //----------------Check photogate---------------------
         return filamentCheck();
 }
+
+print::resultHandler() {
+	if(!modelCheck)
+		throw new printFailureException;
+	if (!filamentCheck)
+		throw new filamentOutException;
+}
