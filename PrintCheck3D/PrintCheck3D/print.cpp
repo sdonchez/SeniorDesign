@@ -93,7 +93,7 @@ void print::statusCheck(){
         cv::imwrite("raspicam_cv_image.jpg",image); //save image to file
 
         //----------------Check photogate---------------------
-        return filamentCheck();
+         myPhotogate = photogate.filamentcheck();
 }
 
 /*******************************************************************************

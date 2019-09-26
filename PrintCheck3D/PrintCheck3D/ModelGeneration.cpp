@@ -36,19 +36,26 @@ int fd = 0; //file descriptor
 * which then stores the min/max of each layer into arrays (or a single 2D array)
 * that are returned
 */
-void ModelGeneration::readGcode()
+void ModelGeneration::readGcode(string gcode) //read the Y/Z axis
 {
-    int aval = serialDataAvail(fd);
-    serialGetchar(fd);
-    if (aval !< 0){
-        for(int i = 0;i < 3 + 1; i++){
-         fd[i]
+  std::string startPrint (";LAYER_COUNT:");
+  std::string endPrint (";TIME_ELAPSED:");
+  std::string rpdMov ("G0");
+  std::string Mov ("G1");
+  std::string yData ("Y");
+  std::string zData ("Z");
+  std::string space (" ");
+  std::string relativePos ("G91"); //NOT GOOD TO HAVE!!
 
-        }
-    }
-    else{
-        std::cout << "error number: " << errno;
-    }
+  
+  found=str.find('.');
+  if (found!=std::string::npos)
+    std::cout << "Period found at: " << found << '\n';
+
+  // let's replace the first needle:
+  str.replace(str.find(str2),str2.length(),"preposition");
+  std::cout << str << '\n';
+    
 }
 
 /*
@@ -75,7 +82,7 @@ void ModelGeneration::plotGcode()
     plot->setMaxY(100);
     plot->setMinY(-1);
     plot->render(display);
-    imshow("Plot", display);
+    imwrite("outline.jpg", display); //write image to outline file
 
 )       
 
