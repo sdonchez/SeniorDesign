@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -7,15 +7,79 @@
 
         <!-- Necessary CSS and JS Libraries -->
         <link href="./bootstrap.css" rel="stylesheet">
+        <link href="./styling.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="./bootstrap.js"></script>
 
         <!-- Webpage Title -->
-        <title>PrintCheck3D Home</title>
+        <title>PrintCheck3D Portal</title>    
     </head>
+   
+    <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                        <h4 class="text-white">About the System</h4>
+                        <p class="text-muted">The PrintCheck3d System is an integrated solution designed to automatically detect and act on many of the common failures inherent to the use of 3D printers. It will detect printing errors and take the appropriate action based on the nature of the error detected.</p>
+                    </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Contact</h4>
+                    <ul class="list-unstyled">
+                        <li class="text-white">Prof. George Simmons</li>
+                        <li class="text-white">Email: george.simmons@villanova.edu</li>
+                        <li class="text-white">CEER 105</li>
+                    </ul>
+                </div>
+                </div>  
+            </div>
+        </div>
+        
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <strong>PrintCheck3D</strong>
+                </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            </div>
+        </div>
+    </header>
 
-    <body>
-        <!-- Body of the Website -->
-        <h1>Hello there this shit easy</h1>
-    </body>
+    <main role="main">
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">PrintCheck3D Web Portal</h1>
+                <p class="lead text-muted">Welcome to the PrintCheck3D Web Portal! This portal allows you to view your active print to check the progress. If you have any questions, please contact Professor Simmons.</p>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <p class="card-text">This is the current image from (insert Printer name here). If you see anything wrong, please pause the print.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Pause Print</button>
+                            </div>
+                            <small class="text-muted">Current Print Image</small>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+    </main>
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>PrintCheck3D is a Senior Capstone Project at Villanova University</p>
+        </div>
+    </footer>
+
 </html>
