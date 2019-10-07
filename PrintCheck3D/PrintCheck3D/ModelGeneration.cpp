@@ -30,16 +30,7 @@
 *******************************************************************************/
 
 #include "ModelGeneration.h"
-int fd = 0; //file descriptor
 
-int *i,*j,*arX,*arY;
-int j_ = 0;
-int i_ = 0;
-j = &j_;
-i = &i_;
-arX = aarrX[1000]; //STEVEN: please check this, I'm not sure where to put
-arY = arrY[1000];  //a pointer that points to an array (in regards to header files)
-lp = 0;
 /*
 * readGcode: reads Gcode and stores the values from a specific axis into an array
 * which then stores the min/max of each layer into arrays (or a single 2D array)
