@@ -21,7 +21,6 @@
 *******************************************************************************/
 
 #include "photogate.h"
-#include "RAMBoInterface.h"
 
 photogate::photogate(int pin) {
 	wiringPiSetup();

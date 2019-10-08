@@ -34,13 +34,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>   
-#include <opencv4/plot.hpp>
+#include <opencv2/plot.hpp>
+#include <opencv2/imgcodecs.hpp>
+using namespace std;
 class ModelGeneration
 {
 
 public:
 
-
+	void modelGeneration();
 
 /*
 * readGcode: reads Gcode and stores the values from a specific axis into an array
@@ -51,7 +53,7 @@ void readGcode(string gcode);
 
 /*
 * plotGcode: takes two arrays (or a single 2D array) and outputs (or stores) an 
-* image of those pointswhich then stores the min/max of each layer into arrays 
+* image of those points which then stores the min/max of each layer into arrays 
 * that are returned
 */
 void plotGcode(int arrX[],int arrY[]);
@@ -60,16 +62,12 @@ void plotGcode(int arrX[],int arrY[]);
 
 private:
     int lp;
-    size_t stt, end, rpdmov, Mov, Y_, Z_, relPos, space;
+    size_t stt, end, rpdMov, Mov, Y_, Z_, relPos, space;
     int fd = 0; 
     int *i,*j,*arX,*arY;
     int j_ = 0;
     int i_ = 0;
-    j = &j_;
-    i = &i_;
-    arX = aarrX[1000];
-    arY = arrY[1000]; 
-    lp = 0;
+    int lp = 0;
     string valY,valZ;
     Mat xData, yData, display;
     Ptr<plot::Plot2d> plot; //create plot object

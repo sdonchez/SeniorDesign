@@ -84,6 +84,7 @@
     <ClCompile Include="photogate.cpp" />
     <ClCompile Include="print.cpp" />
     <ClCompile Include="RAMBoInterface.cpp" />
+    <ClCompile Include="webConnect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="photogate.h" />
@@ -91,6 +92,7 @@
     <ClInclude Include="RAMBoInterface.h" />
     <ClInclude Include="ModelGeneration.cpp" />
     <ClInclude Include="ModelGeneration.h" />
+    <ClInclude Include="webConnect.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />

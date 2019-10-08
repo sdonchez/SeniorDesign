@@ -24,10 +24,10 @@
 using namespace std;
 #include <stdio.h>
 #include <string>
-#include "../vendor/raspicam/src/raspicam_cv.h"
 #include "photogate.h"
 #include "RAMBoInterface.h"
 #include <unistd.h>
+#include "webConnect.h"
 class print
 {
 public:
@@ -38,7 +38,7 @@ public:
 *	model state. Also starts GCode transfer, and tells the webserver that
 *	printing has commenced
 */
-	print(RAMBoInterface *);
+	print(RAMBoInterface *, photogate*, );
 
 /*
 * ~print: tears down the file pointers and buffers created by the constructor.
@@ -75,6 +75,7 @@ public:
 	void resultHandler();
 
 private:
+	photogate myPhotogate
 	cv::Mat image; //create image object
     raspicam::RaspiCam_Cv Camera; //create camera object
 	bool filamentCheck;

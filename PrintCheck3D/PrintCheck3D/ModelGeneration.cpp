@@ -30,7 +30,16 @@
 *******************************************************************************/
 
 #include "ModelGeneration.h"
+using namespace cv;
+using namespace std;
 
+
+void ModelGeneration::modelGeneration() {
+	j = &j_;
+	i = &i_;
+	arX = new int[1000];
+	arY = new int[1000];
+}
 /*
 * readGcode: reads Gcode and stores the values from a specific axis into an array
 * which then stores the min/max of each layer into arrays (or a single 2D array)
@@ -46,48 +55,47 @@ void ModelGeneration::readGcode(string gcode) //read the Y/Z axis
   
 
 
-  if(stt != string::npos){                   //detect when data collection must start
+  if(stt != gcode.npos){                   //detect when data collection must start
         lp = 1;
   }
   
   if(lp == 1){
     
-    if(end != string::npos){                 //detect when data collection must end
+    if(end != gcode.npos){                 //detect when data collection must end
         lp = 0;
-        break;
     }
-    if(rpdMov != string::npos){
+    else if(rpdMov != gcode.npos){
         Y_ = gcode.find('Y');
         Z_ = gcode.find('Z');
 
-        if(Y_ != string::npos){ //finds where "Y" is present
+        if(Y_ != gcode.npos){ //finds where "Y" is present
             space = gcode.find(' ',Y_);      //finds the closest space near "Y"
-            for(int k = Y_+1,k < space,k++){ //grabs the char of the numbers between Y and the next space
-                valY += string.at(k);         //concatenates each char to create a single int
+			for (int k = Y_ + 1; k < space; k++) { //grabs the char of the numbers between Y and the next space
+                valY += gcode.at(k);         //concatenates each char to create a single int
             }
-            arrX[*i] = (int)valY;             //turns the string of char into an int
+            arX[*i] = stoi(valY);             //turns the string of char into an int
             *i++;
         }
 
-        if(Z_ != string::npos){ //finds where "Z" is present
+        if(Z_ != gcode.npos){ //finds where "Z" is present
             space = gcode.find(' ',Z_);      //finds the closest space near "Z"
-            for(int k = Z_+1,k < space,k++){ //grabs the char of the numbers between "Z" and the next space
-                valZ += string.at(k);         //concatenates each char to create a single int
+			for (int k = Z_ + 1; k < space; k++) { //grabs the char of the numbers between "Z" and the next space
+                valZ += gcode.at(k);         //concatenates each char to create a single int
             }
-            arrY[*j] = (int)valZ;             //turns the string of char into an int and-
+            arY[*j] = stoi(valZ);             //turns the string of char into an int and-
             *j++;                             //-stores into the array to plot
         }
    
     }
-    if(Mov != string::npos){
+    if(Mov != gcode.npos){
         Y_ = gcode.find('Y');
 
-        if(Y_ != string::npos){ //finds where "Y" is present
+        if(Y_ != gcode.npos){ //finds where "Y" is present
             space = gcode.find(' ',Y_);      //finds the closest space near "Y"
-            for(int k = Y_+1,k < space,k++){ //grabs the char of the numbers between Y and the next space
-                valY += string.at(k);         //concatenates each char to create a single int
+			for (int k = Y_ + 1; k < space; k++) { //grabs the char of the numbers between Y and the next space
+                valY += gcode.at(k);         //concatenates each char to create a single int
             }
-            arrX[*i] = (int)valY;             //turns the string of char into an int
+            arX[*i] = stoi(valY);             //turns the string of char into an int
             *i++;
         }
       }
@@ -111,7 +119,7 @@ void ModelGeneration::plotGcode(int arrX[],int arrY[])
         xData.at<double>(i) = arrX[i];
         yData.at<double>(i) = arrY[i];
     }
-    plot = plot::createPlot2d(xData, yData);
+    plot = plot::Plot2d::create(xData, yData);
     plot->setPlotSize(100, 1000);
     plot->setMaxX(10);
     plot->setMinX(0);
