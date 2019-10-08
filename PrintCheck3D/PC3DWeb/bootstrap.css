@@ -5111,7 +5111,8 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .alert-heading {
-  color: inherit;
+    color: inherit;
+    font-weight: bold
 }
 
 .alert-link {
