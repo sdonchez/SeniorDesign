@@ -34,16 +34,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>   
-
+#include <opencv4/plot.hpp>
 class ModelGeneration
 {
 
 public:
 
-string valY,valZ;
-int arrX[1000], arrY[1000];
-Mat xData, yData, display;
-Ptr<plot::Plot2d> plot; //create plot object
+
 
 /*
 * readGcode: reads Gcode and stores the values from a specific axis into an array
@@ -64,5 +61,17 @@ void plotGcode(int arrX[],int arrY[]);
 private:
     int lp;
     size_t stt, end, rpdmov, Mov, Y_, Z_, relPos, space;
+    int fd = 0; 
+    int *i,*j,*arX,*arY;
+    int j_ = 0;
+    int i_ = 0;
+    j = &j_;
+    i = &i_;
+    arX = aarrX[1000];
+    arY = arrY[1000]; 
+    lp = 0;
+    string valY,valZ;
+    Mat xData, yData, display;
+    Ptr<plot::Plot2d> plot; //create plot object
 };
 
