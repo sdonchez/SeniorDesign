@@ -84,6 +84,13 @@ public:
 */
 	//TODO: Define GCode Retrevial Mechanism
 
+/*
+*  printArc: Sends a "G2" GCODE command to the RAMBo, instructing the printer to 
+*	print a complete counterclockwise circle with the center offset from the 
+*	current position by 20, 20.
+*/
+	void printArc();
+
 private:
 	char* port;
 	int portFD;

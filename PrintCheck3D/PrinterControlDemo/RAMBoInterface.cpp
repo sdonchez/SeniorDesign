@@ -116,3 +116,17 @@ void RAMBoInterface::resumePrint() {
 	char* command = "G11 S1";
 	serialPuts(portFD, command);
 }
+
+/*******************************************************************************
+* printArc: Sends a "G2" GCODE command to the RAMBo, instructing the printer to 
+*	print a complete counterclockwise circle with the center offset from the 
+*	current position by 20, 20.
+*	@param none
+*	@returns: N/A
+*	@note:
+*	@see:
+*******************************************************************************/
+void RAMBoInterface::printArc() {
+	char* command = "G2 I20 J20";
+	serialPuts(portFD, command);
+}

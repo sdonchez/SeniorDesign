@@ -9,7 +9,7 @@ int main()
 	char* port = "com0";
 	RAMBoInterface printer = RAMBoInterface(port, 115200);
 	int choice;
-	string menu = "Enter an option from the choices below\n1) insert a filament change\n2) insert a recover\n3) insert a stop\n4 quit";
+	string menu = "Enter an option from the choices below\n1) insert a filament change\n2) insert a recover\n3) insert a stop\n4) print circle\n5 quit";
 	while (true) {
 		cout << menu << endl;
 		int read = scanf("%d", &choice);
@@ -28,6 +28,10 @@ int main()
 			cout << "print stop initiated" << endl;
 			break;
 		case 4:
+			printer.printArc();
+			cout << "circle print initiated" << endl;
+			return 0;
+		case 5:
 			return 0;
 		default:
 			cout << "Your choice is invalid. Please try again" << endl;
