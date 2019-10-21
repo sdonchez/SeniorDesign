@@ -82,16 +82,16 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="photogate.cpp" />
-    <ClCompile Include="print.cpp" />
+    <ClCompile Include="print3d.cpp" />
     <ClCompile Include="RAMBoInterface.cpp" />
     <ClCompile Include="webConnect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="photogate.h" />
-    <ClInclude Include="print.h" />
+    <ClInclude Include="print3d.h" />
     <ClInclude Include="RAMBoInterface.h" />
-    <ClInclude Include="ModelGeneration.cpp" />
-    <ClInclude Include="ModelGeneration.h" />
+    <ClInclude Include="model.cpp" />
+    <ClInclude Include="model.h" />
     <ClInclude Include="webConnect.h" />
   </ItemGroup>
   <ItemGroup>

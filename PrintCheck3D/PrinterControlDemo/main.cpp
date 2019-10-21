@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	char* port = "com0";
+	char* port = "ttyACM0";
 	RAMBoInterface printer = RAMBoInterface(port, 115200);
 	int choice;
 	string menu = "Enter an option from the choices below\n1) insert a filament change\n2) insert a recover\n3) insert a stop\n4) print circle\n5 quit";

@@ -35,14 +35,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{d9df217d-db58-4cc3-9ac7-c492960f008e}</ProjectGuid>
+    <ProjectGuid>{53903d68-a21e-4a9a-aae9-29f26bc763f4}</ProjectGuid>
     <Keyword>Linux</Keyword>
-    <RootNamespace>PrinterControlDemo</RootNamespace>
+    <RootNamespace>CameraDemo</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
-    <LinuxProjectType>{D51BCBC9-82E9-4017-911E-C93873C4EA2B}</LinuxProjectType>
+    <LinuxProjectType>{2238F9CD-F817-4ECC-BD14-2524D2669B35}</LinuxProjectType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
@@ -75,18 +75,11 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="RAMBoInterface.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="RAMBoInterface.h" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <ClCompile>
-      <AdditionalIncludeDirectories>/usr/include;C:\Users\sgdon\Source\Repos\sdonchez\SeniorDesign\PrintCheck3D\PrintCheck3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
     <Link>
-      <AdditionalOptions>-lwiringPi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-lraspicam -lraspicam_cv -lopencv_core %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

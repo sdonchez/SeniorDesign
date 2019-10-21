@@ -45,7 +45,7 @@
 *	@note:
 *	@see:
 *******************************************************************************/
-RAMBoInterface::RAMBoInterface(char* port = "com0", int baud=115200)
+RAMBoInterface::RAMBoInterface(char* port, int baud)
 {
 	this->port = port;
 	this->baud = baud;
