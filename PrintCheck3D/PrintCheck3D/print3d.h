@@ -27,8 +27,10 @@ using namespace std;
 #include "photogate.h"
 #include "RAMBoInterface.h"
 #include <unistd.h>
-#include "webConnect.h"
-class print
+//#include "webConnect.h"
+#include <raspicam/raspicam_cv.h>
+#include "model.h"
+class print3d
 {
 public:
 
@@ -38,14 +40,14 @@ public:
 *	model state. Also starts GCode transfer, and tells the webserver that
 *	printing has commenced
 */
-	print(RAMBoInterface *, photogate*, );
+	print3d(RAMBoInterface&, photogate&);
 
 /*
 * ~print: tears down the file pointers and buffers created by the constructor.
 *	also closes the serial connection, and informs the webserver that the
 *	printer is no longer in use.
 */
-	~print();
+	~print3d();
 
 /* 
 * monitorPrint: loops through a process of checking the status of the printer,
@@ -75,16 +77,16 @@ public:
 	void resultHandler();
 
 private:
-	photogate myPhotogate
+	photogate myPhotogate;
 	cv::Mat image; //create image object
-    raspicam::RaspiCam_Cv Camera; //create camera object
+	raspicam::RaspiCam_Cv Camera;
 	bool filamentCheck;
 	string gcode;
 	bool isPrinting;
 	model *currModel;
 	bool modelCheck;
 	int percentComplete;
-	webConnect currConnection;
+	//webConnect currConnection;
 	int totalLines;
 	int currLine;
 	RAMBoInterface printerInterface;

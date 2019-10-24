@@ -29,12 +29,12 @@
 *	along with this program.If not, see < https://www.gnu.org/licenses/>.
 *******************************************************************************/
 
-#include "ModelGeneration.h"
+#include "model.h"
 using namespace cv;
 using namespace std;
 
 
-void ModelGeneration::modelGeneration() {
+model::model() {
 	j = &j_;
 	i = &i_;
 	arX = new int[1000];
@@ -45,7 +45,7 @@ void ModelGeneration::modelGeneration() {
 * which then stores the min/max of each layer into arrays (or a single 2D array)
 * that are returned
 */
-void ModelGeneration::readGcode(string gcode) //read the Y/Z axis
+void model::readGcode(string gcode) //read the Y/Z axis
 {
   stt = gcode.find(";LAYER:0"); 
   end = gcode.find("M140 S0");
@@ -109,7 +109,7 @@ void ModelGeneration::readGcode(string gcode) //read the Y/Z axis
 * image of those pointswhich then stores the min/max of each layer into arrays 
 * that are returned
 */
-void ModelGeneration::plotGcode(int arrX[],int arrY[])
+void model::plotGcode(int arrX[],int arrY[])
 {
     xData.create(1, 100, CV_64F);//1 row, 100 columns, Double
     yData.create(1, 100, CV_64F);

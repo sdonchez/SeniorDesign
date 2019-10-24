@@ -20,7 +20,7 @@
 *	along with this program.If not, see < https://www.gnu.org/licenses/>.
 *******************************************************************************/
 
-#include "print.h"
+#include "print3d.h"
 
 
 /*******************************************************************************
@@ -34,19 +34,18 @@
 *	@note:
 *	@see:
 *******************************************************************************/
-print::print(RAMBoInterface *printerIface)
+print3d::print3d(RAMBoInterface &printerIface, photogate &photogate)
 {
-	this->printerInterface = *printerIface;
-	image = new cv::Mat;
+	this->printerInterface = printerIface;
 	currModel = new model();
-	printerInterface.startGcode();
-	currConnection.printStarted();
+	//printerInterface.startGcode();
+	//currConnection.printStarted();
 }
 
 
-print::~print()
+print3d::~print3d()
 {
-	currConnection.printCompleted();
+	//currConnection.printCompleted();
 }
 
 /*******************************************************************************
@@ -59,9 +58,8 @@ print::~print()
 *	@note:
 *	@see:
 *******************************************************************************/
-void print::monitorPrint() {
+void print3d::monitorPrint() {
 	while (isPrinting) {
-		printerInterface.fetchGcode();
 		statusCheck();
 		evaluatePrint();
 		try {
@@ -70,21 +68,20 @@ void print::monitorPrint() {
 		catch (printFailureException e){
 			printerInterface.stopPrint();
 			percentComplete = 0;
-			statusDescr = e.what;
+			statusDescr = e.what();
 		}
 		catch (filamentOutException e) {
 			printerInterface.pausePrint();
-			statusDescr = e.what;
+			statusDescr = e.what();
 		}
-		currConnection.upload(image, percentComplete, statusDescr);
-		usleep(30000000);
+		//currConnection.upload(image, percentComplete, statusDescr);
+		usleep(5000000);
 	}
 }
 
-void print::statusCheck(){
+void print3d::statusCheck(){
 //------------------Take a picture---------------------
-        Camera.set( CV_CAP_PROP_FORMAT, CV_8UC1 ); //set camera params
-        if (!Camera.open()) {cerr<<"Error opening the camera"<<endl;return -1;}
+	if (!Camera.open()) cerr << "Error opening the camera" << endl;
         //^camera connection error^
 
         Camera.grab(); //begin recieving data
@@ -93,7 +90,7 @@ void print::statusCheck(){
         cv::imwrite("raspicam_cv_image.jpg",image); //save image to file
 
         //----------------Check photogate---------------------
-         myPhotogate = photogate.filamentcheck();
+         filamentCheck = myPhotogate.filamentCheck();
 }
 
 /*******************************************************************************
@@ -104,7 +101,7 @@ void print::statusCheck(){
 *	@note:
 *	@see:
 *******************************************************************************/
-print::resultHandler() {
+void print3d::resultHandler() {
 	if (!modelCheck)
 		throw new printFailureException;
 	if (!filamentCheck)
@@ -120,14 +117,14 @@ print::resultHandler() {
 *	@note:
 *	@see:
 *******************************************************************************/
-void print::evaluatePrint() {
+void print3d::evaluatePrint() {
 	int result = 0;
-	imageComp currComp = new imageComp(image, currModel);
+	//imageComp currComp = new imageComp(image, currModel);
 	
-	if (currComp.match && filamentCheck) {
-		percentComplete = (currLine / totalLines) * 100;
+	//if (currComp.match && filamentCheck) {
+		//percentComplete = (currLine / totalLines) * 100;
 		modelCheck = true;
-	}
-	else
-		percentComplete = 0;
+	//}
+	//else
+		//percentComplete = 0;
 }

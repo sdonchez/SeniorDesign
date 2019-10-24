@@ -37,12 +37,13 @@
 #include <opencv2/plot.hpp>
 #include <opencv2/imgcodecs.hpp>
 using namespace std;
-class ModelGeneration
+using namespace cv;
+class model
 {
 
 public:
 
-	void modelGeneration();
+	model();
 
 /*
 * readGcode: reads Gcode and stores the values from a specific axis into an array
@@ -61,7 +62,6 @@ void plotGcode(int arrX[],int arrY[]);
 
 
 private:
-    int lp;
     size_t stt, end, rpdMov, Mov, Y_, Z_, relPos, space;
     int fd = 0; 
     int *i,*j,*arX,*arY;
