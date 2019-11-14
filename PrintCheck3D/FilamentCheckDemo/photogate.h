@@ -24,7 +24,7 @@
 #include <wiringPi.h>
 class photogate{
 public:
-	photogate(int pin = 2);
+	photogate(int pin = 9);
 	
 	/*********************************************************************
 	*	filamentCheck: This method connects the Raspberry Pi to the

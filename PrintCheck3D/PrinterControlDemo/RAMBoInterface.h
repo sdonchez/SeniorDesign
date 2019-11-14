@@ -26,6 +26,7 @@
 #include <wiringSerial.h>
 #include <iostream>
 #include <fstream>
+#include <python2.7/Python.h>
 
 class RAMBoInterface
 {
@@ -46,7 +47,7 @@ public:
 *	open the serial connection using these parameters. In the event of failure,
 *	returns the error condition.
 */
-	RAMBoInterface(char* port, int baud);
+	RAMBoInterface();
 
 /*
 * ~RAMBoInterface: tears down the serial connection between the Raspberry Pi

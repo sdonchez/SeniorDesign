@@ -45,12 +45,15 @@
 *	@note:
 *	@see:
 *******************************************************************************/
-RAMBoInterface::RAMBoInterface(char* port, int baud)
+RAMBoInterface::RAMBoInterface()
 {
-	this->port = port;
-	this->baud = baud;
+	this->port = "ttyACM0";
+	this->baud = 250000;
 	try {
 		portFD = serialOpen(port, baud);
+		Py_Initialize();
+		PyRun_SimpleString("from serial import Serial\nSerial(port=\'/dev/ttyACM0\',baudrate=250000)");
+		Py_Finalize();
 		if (portFD == -1) throw ("error initalizing the serial port");
 	} 
 	catch (char * e) {
