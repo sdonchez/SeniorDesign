@@ -119,7 +119,7 @@ void print3d::resultHandler() {
 *******************************************************************************/
 void print3d::evaluatePrint() {
 	int result = 0;
-	//imageComp currComp = new imageComp(image, currModel);
+	imageComp currComp(image, currModel);
 	
 	//if (currComp.match && filamentCheck) {
 		//percentComplete = (currLine / totalLines) * 100;

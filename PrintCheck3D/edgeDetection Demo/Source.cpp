@@ -1,0 +1,24 @@
+using namespace std;
+#include <stdio.h>
+#include <string>
+#include <unistd.h>
+#include <raspicam/raspicam_cv.h>
+#include "imageComp.h"
+#include "model.h"
+
+int main()
+{
+	raspicam::RaspiCam_Cv Camera;
+	cv::Mat image; //create image object
+
+	if (!Camera.open()) cerr << "Error opening the camera" << endl;
+	//^camera connection error^
+
+	Camera.grab(); //begin recieving data
+	Camera.retrieve(image); //grab image
+	Camera.release(); //stop recieving data
+	cv::imwrite("raspicam_cv_image.jpg", image); //save image to file
+	model* currModel = new model();
+	imageComp compare(image, currModel);
+	return 0;
+}

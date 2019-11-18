@@ -30,6 +30,7 @@ using namespace std;
 //#include "webConnect.h"
 #include <raspicam/raspicam_cv.h>
 #include "model.h"
+#include "imageComp.h"
 class print3d
 {
 public:
