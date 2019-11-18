@@ -80,6 +80,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="imageComp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="photogate.cpp" />
     <ClCompile Include="print3d.cpp" />
@@ -87,6 +88,7 @@
     <ClCompile Include="webConnect.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="imageComp.h" />
     <ClInclude Include="photogate.h" />
     <ClInclude Include="print3d.h" />
     <ClInclude Include="RAMBoInterface.h" />

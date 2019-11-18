@@ -35,14 +35,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{53903d68-a21e-4a9a-aae9-29f26bc763f4}</ProjectGuid>
+    <ProjectGuid>{bdadfc77-ec68-461a-9fba-b61e3e922945}</ProjectGuid>
     <Keyword>Linux</Keyword>
-    <RootNamespace>CameraDemo</RootNamespace>
+    <RootNamespace>edgeDetection_Demo</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
     <LinuxProjectType>{2238F9CD-F817-4ECC-BD14-2524D2669B35}</LinuxProjectType>
+    <ProjectName>EdgeDetectionDemo</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
@@ -74,13 +75,21 @@
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <IncludePath>C:\Users\sgdon\Source\Repos\sdonchez\SeniorDesign\PrintCheck3D\PrintCheck3D;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="..\PrintCheck3D\imageComp.cpp" />
+    <ClCompile Include="..\PrintCheck3D\model.cpp" />
     <ClCompile Include="Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\PrintCheck3D\imageComp.h" />
+    <ClInclude Include="..\PrintCheck3D\model.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
-      <AdditionalOptions>-lraspicam -lraspicam_cv -lopencv_core %(AdditionalOptions)</AdditionalOptions>
-      <LibraryDependencies>opencv_imgcodecs;raspicam;%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>raspicam;raspicam_cv;opencv_core;opencv_highgui;opencv_imgproc;opencv_plot;opencv_imgcodecs;%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
