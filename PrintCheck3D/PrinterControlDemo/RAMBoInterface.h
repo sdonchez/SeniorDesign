@@ -26,6 +26,8 @@
 #include <wiringSerial.h>
 #include <iostream>
 #include <fstream>
+
+#define PY_SSIZE_T_CLEAN
 #include <python2.7/Python.h>
 
 class RAMBoInterface

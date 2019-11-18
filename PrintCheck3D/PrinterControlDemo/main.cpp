@@ -8,7 +8,7 @@ int main()
 {
 	RAMBoInterface printer = RAMBoInterface();
 	int choice;
-	string menu = "Enter an option from the choices below\n1) insert a filament change\n2) insert a recover\n3) insert a stop\n4) print circle\n5 quit";
+	string menu = "Enter an option from the choices below\n1) insert a filament change\n2) insert a recover\n3) insert a stop\n4) print circle\n5) quit";
 	while (true) {
 		cout << menu << endl;
 		int read = scanf("%d", &choice);

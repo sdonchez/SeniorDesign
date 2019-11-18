@@ -48,7 +48,7 @@
 RAMBoInterface::RAMBoInterface()
 {
 	this->port = "ttyACM0";
-	this->baud = 250000;
+	this->baud = 230400;
 	try {
 		portFD = serialOpen(port, baud);
 		Py_Initialize();

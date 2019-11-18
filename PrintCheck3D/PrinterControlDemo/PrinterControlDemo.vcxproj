@@ -86,9 +86,11 @@
       <AdditionalIncludeDirectories>/usr/include;C:\Users\sgdon\Source\Repos\sdonchez\SeniorDesign\PrintCheck3D\PrintCheck3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalOptions>-lwiringPi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-lwiringPi -L/usr/lib/python2.7/config-arm-linux-gnueabihf -L/usr/lib -lpython2.7 -lpthread -ldl  -lutil -lm  -Xlinker -export-dynamic -Wl,-O1 -Wl,-Bsymbolic-functions %(AdditionalOptions)</AdditionalOptions>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <LibraryDependencies>%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
