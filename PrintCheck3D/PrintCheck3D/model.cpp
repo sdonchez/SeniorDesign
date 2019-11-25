@@ -130,4 +130,6 @@ void model::plotGcode(int arrX[],int arrY[])
 
 }
 
-
+cv::Mat model::getMat() {
+	return display;
+}

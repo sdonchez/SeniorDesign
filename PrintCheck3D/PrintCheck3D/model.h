@@ -59,7 +59,7 @@ void readGcode(string gcode);
 */
 void plotGcode(int arrX[],int arrY[]);
 
-
+cv::Mat getMat();
 
 private:
     size_t stt, end, rpdMov, Mov, Y_, Z_, relPos, space;
@@ -69,7 +69,7 @@ private:
     int i_ = 0;
     int lp = 0;
     string valY,valZ;
-    Mat xData, yData, display;
+    cv::Mat xData, yData, display;
     Ptr<plot::Plot2d> plot; //create plot object
 };
 

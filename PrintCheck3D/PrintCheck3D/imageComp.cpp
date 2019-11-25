@@ -41,7 +41,8 @@ bool imageComp::compModel()
 {
 	bool failedPrint;
 	cv::Mat dest;
-	cv::bitwise_xor(dst, currModel, dest); //may need to convert currModel into a cv::Mat
+	cv::Mat currentModel = currModel.getMat();
+	cv::bitwise_xor(dst, currentModel, dest); //may need to convert currModel into a cv::Mat
 	if (cv::countNonZero(dst) > 0) //check non-0 pixels
 		failedPrint = true;
 	else
