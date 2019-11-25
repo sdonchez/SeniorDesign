@@ -36,3 +36,15 @@ void imageComp::edgeDetect()
 	imshow(windowName, dst);
 	getchar();
 }
+
+bool imageComp::compModel() 
+{
+	bool failedPrint;
+	cv::Mat dest;
+	cv::bitwise_xor(dst, currModel, dest); //may need to convert currModel into a cv::Mat
+	if (cv::countNonZero(dst) > 0) //check non-0 pixels
+		failedPrint = false;
+	else
+		failedPrint = true;
+	return failedPrint;
+}

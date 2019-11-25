@@ -13,6 +13,7 @@ public:
 	imageComp(cv::Mat,model*);
 	~imageComp();
 	void edgeDetect();
+	bool compModel();
 
 private:
 	Mat src, srcGray;
