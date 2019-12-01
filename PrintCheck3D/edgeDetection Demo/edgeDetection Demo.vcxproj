@@ -91,6 +91,9 @@
     <Link>
       <LibraryDependencies>raspicam;raspicam_cv;opencv_core;opencv_highgui;opencv_imgproc;opencv_plot;opencv_imgcodecs;%(LibraryDependencies)</LibraryDependencies>
     </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../PrintCheck3D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -3,8 +3,8 @@ using namespace std;
 #include <string>
 #include <unistd.h>
 #include <raspicam/raspicam_cv.h>
-#include "imageComp.h"
-#include "model.h"
+#include <imageComp.h>
+#include <model.h>
 
 int main()
 {
@@ -19,6 +19,10 @@ int main()
 	Camera.release(); //stop recieving data
 	cv::imwrite("raspicam_cv_image.jpg", image); //save image to file
 	model* currModel = new model();
-	imageComp compare(image, currModel);
+	imageComp ic = imageComp(image, currModel);
+	if (ic.compModel() == false)
+		cout << "image doesn't match model" << endl;
+	else
+		cout << "image matches model" << endl;
 	return 0;
 }
