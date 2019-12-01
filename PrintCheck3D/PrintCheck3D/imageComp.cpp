@@ -8,11 +8,9 @@ imageComp::imageComp(cv::Mat image, model* model)
 	ratio = 3;
 	kernelSize = 3;
 	lowThreshold = 50;
-	windowName = "Edge Map";
 
 	dst.create(src.size(), src.type());
 	cvtColor(src, srcGray, COLOR_BGR2GRAY);
-	namedWindow(windowName, WINDOW_AUTOSIZE);
 
 	edgeDetect();
 }
@@ -31,10 +29,8 @@ void imageComp::edgeDetect()
 
 	/// Using Canny's output as a mask, we display our result
 	dst = Scalar::all(0);
-
 	src.copyTo(dst, detectedEdges);
-	imshow(windowName, dst);
-	getchar();
+	cv::imwrite("edges.jpg", dst); //save image to file
 }
 
 bool imageComp::compModel() 
