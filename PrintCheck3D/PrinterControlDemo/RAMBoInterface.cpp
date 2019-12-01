@@ -31,7 +31,6 @@
 * M25:	Pause SD print
 */
 
-
 /*******************************************************************************
 * RAMBoInterface: sets up the serial connection between the Raspberry Pi running
 *	this application and the RAMBo controlling the printer. First collects
@@ -47,17 +46,11 @@
 *******************************************************************************/
 RAMBoInterface::RAMBoInterface()
 {
-	this->port = "ttyACM0";
-	this->baud = 460800;
 	try {
-		portFD = serialOpen(port, baud);
-		Py_Initialize();
-		PyRun_SimpleString("from serial import Serial\nSerial(port=\'/dev/ttyACM0\',baudrate=250000)");
-		Py_Finalize();
-		if (portFD == -1) throw ("error initalizing the serial port");
+		openPort();
 	} 
 	catch (char * e) {
-		std::cout << e << "error number: " << errno;
+		//std::cout << e << "error number: " << errno;
 	}
 }
 
@@ -73,8 +66,7 @@ RAMBoInterface::RAMBoInterface()
 *******************************************************************************/
 RAMBoInterface::~RAMBoInterface()
 {
-	serialFlush(portFD);
-	serialClose(portFD);
+	
 }
 
 /*******************************************************************************
@@ -129,7 +121,38 @@ void RAMBoInterface::resumePrint() {
 *	@note:
 *	@see:
 *******************************************************************************/
-void RAMBoInterface::printArc() {
-	char* command = "G2 I20 J20";
-	serialPuts(portFD, command);
+void  RAMBoInterface::printArc() {
+	std::string command = "G2 I20 J20\r\n";
+	int written = write(portFD, command.c_str(), command.size());
+}
+
+void RAMBoInterface::openPort() {
+	int fd;
+	fd = open("/dev/ttyACM0", O_RDWR);
+
+	if (fd == -1) // if open is unsucessful
+		printf("Unable to open /dev/ttyACM0.\n");
+	
+	else {
+		fcntl(fd, F_SETFL, 0);
+		printf("port is open.\n");
+		struct termios2 port_settings;      // structure to store the port settings in
+		ioctl(fd, TCGETS2, &port_settings);
+		port_settings.c_cflag |= BOTHER;
+		port_settings.c_ispeed = 250000;
+		port_settings.c_ospeed = 250000;
+		port_settings.c_cflag &= ~PARENB;    // set no parity, stop bits, data bits
+		port_settings.c_cflag &= ~CSTOPB;
+		//port_settings.c_cflag &= ~CSIZE;
+		//port_settings.c_iflag &= (IXON | IXOFF | IXANY); // Turn on s/w flow ctrl
+		//port_settings.c_cflag &= ~CRTSCTS; // Turn off h/w flow ctrl
+		//port_settings.c_cflag |= CS8;
+		port_settings.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | IXON);
+		port_settings.c_oflag &= ~OPOST;
+		port_settings.c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
+		port_settings.c_cflag &= ~(CSIZE | PARENB);
+		port_settings.c_cflag |= CS8;
+		ioctl(fd, TCSETS2, &port_settings);    // apply the settings to the port
+	}
+	portFD = fd;
 }

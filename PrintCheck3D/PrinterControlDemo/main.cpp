@@ -29,7 +29,7 @@ int main()
 		case 4:
 			printer.printArc();
 			cout << "circle print initiated" << endl;
-			return 0;
+			break;
 		case 5:
 			return 0;
 		default:

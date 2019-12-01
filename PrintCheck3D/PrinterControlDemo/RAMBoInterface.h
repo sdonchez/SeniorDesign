@@ -26,9 +26,13 @@
 #include <wiringSerial.h>
 #include <iostream>
 #include <fstream>
-
-#define PY_SSIZE_T_CLEAN
-#include <python2.7/Python.h>
+#include <stdio.h> // standard input/output functions
+#include <string.h> // string function definitions
+#include <unistd.h> // UNIX standard function definitions
+#include <fcntl.h> // file control definitions
+#include <errno.h> // error number definitions
+#include <asm/termios.h> // POSIX terminal control definitions
+#include <stropts.h>
 
 class RAMBoInterface
 {
@@ -81,24 +85,17 @@ public:
 */
 	void resumePrint();
 
-/* fetchGCode: initates a serial transfer of the GCode data for the currently
-*	selected file from the RAMBo's SD Card to the Raspberry Pi, for use by the
-*	modeling routines in the PrintCheck3D application
-*/
-	//TODO: Define GCode Retrevial Mechanism
-
 /*
 *  printArc: Sends a "G2" GCODE command to the RAMBo, instructing the printer to 
 *	print a complete counterclockwise circle with the center offset from the 
 *	current position by 20, 20.
 */
 	void printArc();
+	
+	void openPort();	
 
 private:
 	char* port;
 	int portFD;
-	int baud;
-	
-	
 };
 
