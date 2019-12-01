@@ -3,8 +3,8 @@ using namespace std;
 #include <string>
 #include <unistd.h>
 #include <raspicam/raspicam_cv.h>
-#include <imageComp.h>
-#include <model.h>
+#include "imageComp.h"
+#include "model.h"
 
 int main()
 {
@@ -13,6 +13,9 @@ int main()
 
 	if (!Camera.open()) cerr << "Error opening the camera" << endl;
 	//^camera connection error^
+	Camera.setHorizontalFlip(true);
+	Camera.setVerticalFlip(true);
+	Camera.setExposureCompensation(25);
 
 	Camera.grab(); //begin recieving data
 	Camera.retrieve(image); //grab image
