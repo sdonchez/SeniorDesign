@@ -3,7 +3,7 @@
 #include "print3d.h"
 
 int main() {
-	RAMBoInterface printer = RAMBoInterface("COM1", 115200);
+	RAMBoInterface printer = RAMBoInterface("ttyACM0", 250000);
 	photogate myphotogate = photogate(7);
 	print3d currentPrint = print3d(printer, myphotogate);
 

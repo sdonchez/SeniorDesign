@@ -38,6 +38,14 @@ print3d::print3d(RAMBoInterface &printerIface, photogate &photogate)
 {
 	this->printerInterface = printerIface;
 	currModel = new model();
+
+	//set up camera
+	if (!Camera.open()) cerr << "Error opening the camera" << endl;
+	//^camera connection error^
+	Camera.setHorizontalFlip(true);
+	Camera.setVerticalFlip(true);
+	Camera.setExposureCompensation(25);
+
 	//printerInterface.startGcode();
 	//currConnection.printStarted();
 }
@@ -87,7 +95,7 @@ void print3d::statusCheck(){
         Camera.grab(); //begin recieving data
         Camera.retrieve(image); //grab image
         Camera.release(); //stop recieving data
-        cv::imwrite("raspicam_cv_image.jpg",image); //save image to file
+        cv::imwrite("currentImage.jpg",image); //save image to file
 
         //----------------Check photogate---------------------
          filamentCheck = myPhotogate.filamentCheck();
