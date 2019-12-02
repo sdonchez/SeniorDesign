@@ -79,8 +79,8 @@ RAMBoInterface::~RAMBoInterface()
 *	@see:
 *******************************************************************************/
 void RAMBoInterface::stopPrint() {
-	char* command = "M0";
-	serialPuts(portFD, command);
+	std::string command = "M0";
+	write(portFD, command.c_str(), command.size());
 }
 
 /*******************************************************************************
@@ -94,8 +94,8 @@ void RAMBoInterface::stopPrint() {
 *	@see:
 *******************************************************************************/
 void RAMBoInterface::pausePrint() {
-	char* command = "G10 S1";
-	serialPuts(portFD, command);
+	std::string command = "G10 S1\r";
+	write(portFD, command.c_str(), command.size());
 }
 
 /*******************************************************************************
@@ -108,8 +108,8 @@ void RAMBoInterface::pausePrint() {
 *	@see:
 *******************************************************************************/
 void RAMBoInterface::resumePrint() {
-	char* command = "G11 S1";
-	serialPuts(portFD, command);
+	std::string command = "G11 S1\r";
+	write(portFD, command.c_str(), command.size());
 }
 
 /*******************************************************************************
@@ -122,8 +122,8 @@ void RAMBoInterface::resumePrint() {
 *	@see:
 *******************************************************************************/
 void  RAMBoInterface::printArc() {
-	std::string command = "G2 I20 J20\r\n";
-	int written = write(portFD, command.c_str(), command.size());
+	std::string command = "G2 I20 J20\r";
+	write(portFD, command.c_str(), command.size());
 }
 
 void RAMBoInterface::openPort() {
@@ -143,15 +143,13 @@ void RAMBoInterface::openPort() {
 		port_settings.c_ospeed = 250000;
 		port_settings.c_cflag &= ~PARENB;    // set no parity, stop bits, data bits
 		port_settings.c_cflag &= ~CSTOPB;
-		//port_settings.c_cflag &= ~CSIZE;
-		//port_settings.c_iflag &= (IXON | IXOFF | IXANY); // Turn on s/w flow ctrl
-		//port_settings.c_cflag &= ~CRTSCTS; // Turn off h/w flow ctrl
-		//port_settings.c_cflag |= CS8;
+		port_settings.c_cflag &= ~CSIZE;
+		port_settings.c_iflag &= ~(IXON | IXOFF | IXANY);
+		port_settings.c_cflag &= ~CRTSCTS;
+		port_settings.c_cflag |= CS8;
 		port_settings.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | IXON);
 		port_settings.c_oflag &= ~OPOST;
 		port_settings.c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
-		port_settings.c_cflag &= ~(CSIZE | PARENB);
-		port_settings.c_cflag |= CS8;
 		ioctl(fd, TCSETS2, &port_settings);    // apply the settings to the port
 	}
 	portFD = fd;
