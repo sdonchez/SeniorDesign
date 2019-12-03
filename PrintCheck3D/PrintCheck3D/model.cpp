@@ -67,24 +67,34 @@ void model::readGcode(string gcode) //read the Y/Z axis
     else if(rpdMov != gcode.npos){
         Y_ = gcode.find('Y');
         Z_ = gcode.find('Z');
-
-        if(Y_ != gcode.npos){ //finds where "Y" is present
-            space = gcode.find(' ',Y_);      //finds the closest space near "Y"
-			for (int k = Y_ + 1; k < space; k++) { //grabs the char of the numbers between Y and the next space
-                valY += gcode.at(k);         //concatenates each char to create a single int
-            }
-            arX[*i] = stoi(valY);             //turns the string of char into an int
-            *i++;
-        }
-
-        if(Z_ != gcode.npos){ //finds where "Z" is present
-            space = gcode.find(' ',Z_);      //finds the closest space near "Z"
-			for (int k = Z_ + 1; k < space; k++) { //grabs the char of the numbers between "Z" and the next space
-                valZ += gcode.at(k);         //concatenates each char to create a single int
-            }
-            arY[*j] = stoi(valZ);             //turns the string of char into an int and-
-            *j++;                             //-stores into the array to plot
-        }
+		try {
+			if (Y_ != gcode.npos) { //finds where "Y" is present
+				space = gcode.find(' ', Y_);      //finds the closest space near "Y"
+				for (int k = Y_ + 1; k <= space; k++) { //grabs the char of the numbers between Y and the next space
+					valY += gcode.at(k);         //concatenates each char to create a single int
+				}
+				arX[*i] = stoi(valY);             //turns the string of char into an int
+				*i++;
+			}
+		}
+		catch(...){
+			arX[*i] = 0;
+			*i++;
+		}
+		try {
+			if (Z_ != gcode.npos) { //finds where "Z" is present
+				space = gcode.find(' ', Z_);      //finds the closest space near "Z"
+				for (int k = Z_ + 1; k <= space; k++) { //grabs the char of the numbers between "Z" and the next space
+					valZ += gcode.at(k);         //concatenates each char to create a single int
+				}
+				arY[*j] = stoi(valZ);             //turns the string of char into an int and-
+				*j++;                             //-stores into the array to plot
+			}
+		}
+		catch (...) {
+			arY[*j++] = 0;
+			*j++;
+		}
    
     }
     if(Mov != gcode.npos){
@@ -92,7 +102,7 @@ void model::readGcode(string gcode) //read the Y/Z axis
 
         if(Y_ != gcode.npos){ //finds where "Y" is present
             space = gcode.find(' ',Y_);      //finds the closest space near "Y"
-			for (int k = Y_ + 1; k < space; k++) { //grabs the char of the numbers between Y and the next space
+			for (int k = Y_ + 1; k <= space; k++) { //grabs the char of the numbers between Y and the next space
                 valY += gcode.at(k);         //concatenates each char to create a single int
             }
             arX[*i] = stoi(valY);             //turns the string of char into an int
