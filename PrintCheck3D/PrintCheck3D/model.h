@@ -57,7 +57,7 @@ void readGcode(string gcode);
 * image of those points which then stores the min/max of each layer into arrays 
 * that are returned
 */
-void plotGcode(int arrX[],int arrY[]);
+void plotGcode();
 
 cv::Mat getMat();
 

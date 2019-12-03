@@ -109,15 +109,15 @@ void model::readGcode(string gcode) //read the Y/Z axis
 * image of those pointswhich then stores the min/max of each layer into arrays 
 * that are returned
 */
-void model::plotGcode(int arrX[],int arrY[])
+void model::plotGcode()
 {
     xData.create(1, 100, CV_64F);//1 row, 100 columns, Double
     yData.create(1, 100, CV_64F);
 
     for(int i = 0; i<100; ++i)
     {
-        xData.at<double>(i) = arrX[i];
-        yData.at<double>(i) = arrY[i];
+        xData.at<double>(i) = arX[i];
+        yData.at<double>(i) = arY[i];
     }
     plot = plot::Plot2d::create(xData, yData);
     plot->setPlotSize(100, 1000);
