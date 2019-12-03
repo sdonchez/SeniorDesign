@@ -46,12 +46,7 @@
 *******************************************************************************/
 RAMBoInterface::RAMBoInterface()
 {
-	try {
-		openPort();
-	} 
-	catch (char * e) {
-		//std::cout << e << "error number: " << errno;
-	}
+	openPort();
 }
 
 /*******************************************************************************
@@ -151,6 +146,8 @@ void RAMBoInterface::openPort() {
 		port_settings.c_oflag &= ~OPOST;
 		port_settings.c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
 		ioctl(fd, TCSETS2, &port_settings);    // apply the settings to the port
+		std::string command = "M117 PrintCheck3D Connected\r";
+		write(portFD, command.c_str(), command.size());
 	}
 	portFD = fd;
 }
