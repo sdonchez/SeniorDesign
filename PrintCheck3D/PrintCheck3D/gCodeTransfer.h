@@ -1,3 +1,5 @@
+#pragma once
+
 /*******************************************************************************
 * This file is part of PrintCheck3D
 * Copyright(C) 2019 Stephen Donchez, Jared Rymsza, Robert Pink
@@ -17,20 +19,19 @@
 *******************************************************************************/
 
 #include <stdio.h>
-#include <string.h>
-#include <fcntl.h> // Contains file controls like O_RDWR
-#include <errno.h> // Error integer and strerror() function
-#include <termios.h> // Contains POSIX terminal control definitions
-#include <unistd.h> // write(), read(), close()
+#include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+
+using namespace std;
 
 class gCodeTransfer {
 public:
-	gCodeTransfer(char* infile);
+	std::vector<std::string> fileByLine;
+	gCodeTransfer(char* inFile);
 
 	~gCodeTransfer();
 
-	sendCode();
-
 private:
-	int gcodeFD, portFD;
 };

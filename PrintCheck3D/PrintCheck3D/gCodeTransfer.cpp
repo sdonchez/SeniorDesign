@@ -19,18 +19,16 @@
 #include <gCodeTransfer.h>
 
 gCodeTransfer::gCodeTransfer(char* infile) {
-	gcodeFD = open(infile, "r");
-}
-
-gCodeTransfer::~gCodeTransfer() {
-
-}
-
-gCodeTransfer::sendCode() {
-	portFD = open("/dev/ttyS0", O_RDWR); //need to figure out correct port
-	if (portFD == -1) // if open is unsucessful
-		printf("Unable to open /dev/ttyS0.\n");
-	else {
-
+	std::ifstream file(infile);
+	std::vector<std::string> fileVector;
+	if (file.is_open()) {
+		while (!file.eof()) {
+			std::string line;
+			std::getline(file, line);
+			fileVector.emplace_back(line);
+		}
 	}
+	fileByLine = fileVector;
 }
+
+gCodeTransfer::~gCodeTransfer() {}
