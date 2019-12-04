@@ -139,7 +139,7 @@ void RAMBoInterface::openPort() {
 		port_settings.c_cflag &= ~PARENB;    // set no parity, stop bits, data bits
 		port_settings.c_cflag &= ~CSTOPB;
 		port_settings.c_cflag &= ~CSIZE;
-		port_settings.c_iflag &= ~(IXON | IXOFF | IXANY);
+		port_settings.c_iflag &= (IXON | IXOFF | IXANY); //turn on s/w flow control
 		port_settings.c_cflag &= ~CRTSCTS;
 		port_settings.c_cflag |= CS8;
 		port_settings.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | IXON);
@@ -153,6 +153,6 @@ void RAMBoInterface::openPort() {
 }
 
 void RAMBoInterface::runPrintJob(std::vector<std::string> command) {
-	for(int i = 0; i <= command.size(); i++)	
+	for(int i = 0; i < command.size(); i++)	
 		write(portFD, command.at(i).c_str(), command.at(i).size());
 }
