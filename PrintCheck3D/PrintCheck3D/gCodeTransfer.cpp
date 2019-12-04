@@ -32,3 +32,7 @@ gCodeTransfer::gCodeTransfer(char* infile) {
 }
 
 gCodeTransfer::~gCodeTransfer() {}
+
+std::vector<std::string> gCodeTransfer::getVector() {
+	return fileByLine;
+}

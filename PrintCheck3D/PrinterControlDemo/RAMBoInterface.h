@@ -33,6 +33,8 @@
 #include <errno.h> // error number definitions
 #include <asm/termios.h> // POSIX terminal control definitions
 #include <stropts.h>
+#include <vector>
+#include <string>
 
 class RAMBoInterface
 {
@@ -92,7 +94,9 @@ public:
 */
 	void printArc();
 	
-	void openPort();	
+	void openPort();
+
+	void runPrintJob(std::vector<std::string> command);
 
 private:
 	char* port;

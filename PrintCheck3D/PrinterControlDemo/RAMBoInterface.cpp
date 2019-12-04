@@ -151,3 +151,8 @@ void RAMBoInterface::openPort() {
 	}
 	portFD = fd;
 }
+
+void RAMBoInterface::runPrintJob(std::vector<std::string> command) {
+	for(int i = 0; i < command.size(); i++)	
+		write(portFD, command.at(i).c_str(), command.size());
+}

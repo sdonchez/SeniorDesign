@@ -28,10 +28,12 @@ using namespace std;
 
 class gCodeTransfer {
 public:
-	std::vector<std::string> fileByLine;
 	gCodeTransfer(char* inFile);
 
 	~gCodeTransfer();
 
+	std::vector<std::string> getVector();
+
 private:
+	std::vector<std::string> fileByLine;
 };
