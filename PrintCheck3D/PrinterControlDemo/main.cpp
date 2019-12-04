@@ -34,7 +34,7 @@ int main()
 			break;
 		case 5:
 			printer.runPrintJob(printJob.getVector());
-			cout << "running sample program" << endl;
+			cout << "printing rocktopus" << endl;
 			break;
 		case 6:
 			return 0;

@@ -153,6 +153,6 @@ void RAMBoInterface::openPort() {
 }
 
 void RAMBoInterface::runPrintJob(std::vector<std::string> command) {
-	for(int i = 0; i < command.size(); i++)	
-		write(portFD, command.at(i).c_str(), command.size());
+	for(int i = 0; i <= command.size(); i++)	
+		write(portFD, command.at(i).c_str(), command.at(i).size());
 }
