@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	photogate gate = photogate(9);
+	photogate gate = photogate(7);
 	bool isObstructed;
 	bool isObstructedPast;
 	cout << "Welcome to the filament detection demo. Press any key to begin, Ctrl-C to exit" << endl;

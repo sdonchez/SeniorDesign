@@ -65,12 +65,12 @@ void model::readGcode(string gcode) //read the Y/Z axis
         lp = 0;
     }
     else if(rpdMov != gcode.npos){
-        Y_ = gcode.find('Y');
-        Z_ = gcode.find('Z');
+        Y_ = gcode.find('Y',stt+10);
+        Z_ = gcode.find('Z',stt+10);
 		try {
 			if (Y_ != gcode.npos) { //finds where "Y" is present
 				space = gcode.find(' ', Y_);      //finds the closest space near "Y"
-				for (int k = Y_ + 1; k <= space; k++) { //grabs the char of the numbers between Y and the next space
+				for (int k = Y_ + 1; k < space; k++) { //grabs the char of the numbers between Y and the next space
 					valY += gcode.at(k);         //concatenates each char to create a single int
 				}
 				arX[*i] = stoi(valY);             //turns the string of char into an int
@@ -83,8 +83,8 @@ void model::readGcode(string gcode) //read the Y/Z axis
 		}
 		try {
 			if (Z_ != gcode.npos) { //finds where "Z" is present
-				space = gcode.find(' ', Z_);      //finds the closest space near "Z"
-				for (int k = Z_ + 1; k <= space; k++) { //grabs the char of the numbers between "Z" and the next space
+				space = gcode.find('G', Z_);      //finds the closest space near "Z"
+				for (int k = Z_ + 1; k < space; k++) { //grabs the char of the numbers between "Z" and the next space
 					valZ += gcode.at(k);         //concatenates each char to create a single int
 				}
 				arY[*j] = stoi(valZ);             //turns the string of char into an int and-
@@ -98,11 +98,11 @@ void model::readGcode(string gcode) //read the Y/Z axis
    
     }
     if(Mov != gcode.npos){
-        Y_ = gcode.find('Y');
+        Y_ = gcode.find('Y', stt+10);
 
         if(Y_ != gcode.npos){ //finds where "Y" is present
             space = gcode.find(' ',Y_);      //finds the closest space near "Y"
-			for (int k = Y_ + 1; k <= space; k++) { //grabs the char of the numbers between Y and the next space
+			for (int k = Y_ + 1; k < space; k++) { //grabs the char of the numbers between Y and the next space
                 valY += gcode.at(k);         //concatenates each char to create a single int
             }
             arX[*i] = stoi(valY);             //turns the string of char into an int
