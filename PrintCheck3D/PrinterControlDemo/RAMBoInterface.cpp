@@ -147,14 +147,13 @@ void RAMBoInterface::openPort() {
 		port_settings.c_lflag &= ~(ECHO | ECHONL | ISIG | IEXTEN);
 		port_settings.c_lflag |= ICANON;
 		ioctl(fd, TCSETS2, &port_settings);    // apply the settings to the port
-		std::string command = "M117 PrintCheck3D Connected\r";
-		write(portFD, command.c_str(), command.size());
 	}
 	portFD = fd;
 }
 
 void RAMBoInterface::runPrintJob(std::vector<std::string> command) {
 	for (int i = 0; i < command.size(); i++) {
+		std::string cmd = command.at(i).c_str();
 		write(portFD, command.at(i).c_str(), command.at(i).size());
 	}
 }

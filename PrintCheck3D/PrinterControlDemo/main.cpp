@@ -8,9 +8,9 @@ using namespace std;
 int main()
 {
 	RAMBoInterface printer = RAMBoInterface();
-	gCodeTransfer printJob = gCodeTransfer("/media/pi/PRINT3D/sample.gcode");
+	gCodeTransfer printJob = gCodeTransfer("/media/pi/PRINT3D/rocktopus-sample.gcode");
 	int choice;
-	string menu = "Enter an option from the choices below\n1) insert a filament change\n2) insert a recover\n3) insert a stop\n4) show arc movement\n5) print gcode\n6) quit";
+	string menu = "Enter an option from the choices below\n1) insert a filament change\n2) insert a recover\n3) insert a stop\n4) show arc movement\n5) print rocktopus\n6) quit";
 	while (true) {
 		cout << menu << endl;
 		int read = scanf("%d", &choice);
