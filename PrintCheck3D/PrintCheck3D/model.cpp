@@ -124,18 +124,18 @@ void model::plotGcode()
     xData.create(1, 100, CV_64F);//1 row, 100 columns, Double
     yData.create(1, 100, CV_64F);
 
-    for(int i = 0; i<100; ++i)
+    for(int i = 0; i<1000; i++)
     {
         xData.at<double>(i) = arX[i];
         yData.at<double>(i) = arY[i];
     }
-    plot = plot::Plot2d::create(xData, yData);
-    plot->setPlotSize(100, 1000);
-    plot->setMaxX(10);
-    plot->setMinX(0);
-    plot->setMaxY(100);
-    plot->setMinY(-1);
+	plot = plot::Plot2d::create(xData, yData);
+    plot->setPlotSize(300, 400);
+	plot->setShowGrid(false);
+	plot->setPlotLineColor(Scalar(255, 0, 0));
+	plot->setPlotLineWidth(2);
     plot->render(display);
+	imshow("",display)
     imwrite("outline.jpg", display); //write image to outline file   
 
 }
